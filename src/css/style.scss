@@ -1,0 +1,43 @@
+.main-header {
+  background-image: url("/public/imgs/header.jpg");
+}
+
+.bg {
+  background-color: rgba(102, 16, 242, 0.8);
+  backdrop-filter: blur(4px);
+  padding: 50px 30px;
+}
+
+.logo:hover {
+  color: #6610f2 !important;
+}
+
+.header {
+  background-color: rgb(255, 255, 255);
+  background-blend-mode: color-dodge;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.h-article {
+  h1 {
+    padding: 80px 40px 40px 40px !important;
+    max-width: 700px;
+  }
+  p {
+    padding: 0px 30px 40px 30px !important;
+    max-width: 1000px;
+  }
+
+  .s-box {
+    padding: 20px 20px 80px 20px;
+  }
+}
+
+.color-primary {
+  color: #6610f2;
+}
+
+.bg-color-primary {
+  background-color: #6610f2;
+}
