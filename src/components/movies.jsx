@@ -5,6 +5,8 @@ import { getMovies, deleteMovie } from "../services/fackeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { Paginate } from "../utils/paginate";
 
+import Header from "./header";
+import MoviesCount from "./moviesCount";
 import MoviesTable from "./moviesTable";
 import Pagination from "./commen/pagination";
 import ListGroup from "./commen/listGroup";
@@ -20,7 +22,7 @@ class Movies extends Component {
   };
 
   componentDidMount = () => {
-    const genres = [{ id: "", name: "All Genres" }, ...getGenres()];
+    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
     this.setState({ movies: getMovies(), genres });
   };
 
@@ -29,11 +31,12 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
+    console.log("test");
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
   handleDelete = (movie) => {
-    const movies = this.state.movies.filter((m) => m.id !== movie.id);
+    const movies = this.state.movies.filter((m) => m._id !== movie._id);
     this.setState({ movies });
 
     deleteMovie(movie);
@@ -58,12 +61,17 @@ class Movies extends Component {
       pageSize,
       currentPage,
       sortColomn,
+      searchQuery,
     } = this.state;
 
     let filtered = allMovies;
 
-    if (selectedGenre && selectedGenre.id) {
+    if (selectedGenre && selectedGenre._id) {
       filtered = allMovies.filter((g) => g.genre.name === selectedGenre.name);
+    } else if (searchQuery) {
+      filtered = allMovies.filter((m) =>
+        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
     }
 
     const sorted = _.orderBy(filtered, [sortColomn.path], [sortColomn.order]);
@@ -74,7 +82,7 @@ class Movies extends Component {
   };
 
   handleSearch = (query) => {
-    this.setState({ searchQuery: query });
+    this.setState({ searchQuery: query, currentPage: 1, selectedGenre: null });
   };
 
   render() {
@@ -85,6 +93,7 @@ class Movies extends Component {
       pageSize,
       currentPage,
       sortColomn,
+      searchQuery,
     } = this.state;
 
     const { movies, totlaleCount } = this.getPagedData();
@@ -93,27 +102,39 @@ class Movies extends Component {
       return <h5>There are no movies in the database</h5>;
 
     return (
-      <div className="container">
-        <h5>showing {totlaleCount} movies in the database.</h5>
-        <ListGroup
-          genres={genres}
-          selectedGenre={selectedGenre}
-          onGenreSelect={this.handleGenreSelect}
+      <React.Fragment>
+        <Header />
+        <MoviesCount
+          totlaleCount={totlaleCount}
+          searchQuery={searchQuery}
+          onSearch={this.handleSearch}
         />
-        <MoviesTable
-          movies={movies}
-          sortColomn={sortColomn}
-          onSort={this.handleSort}
-          onLike={this.handleLike}
-          onDelete={this.handleDelete}
-        />
-        <Pagination
-          count={totlaleCount}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
-      </div>
+        <div className="bg-light">
+          <div className="movies ">
+            <div className="container py-5">
+              <ListGroup
+                genres={genres}
+                selectedGenre={selectedGenre}
+                onGenreSelect={this.handleGenreSelect}
+              />
+              <MoviesTable
+                movies={movies}
+                user={this.props.user}
+                sortColomn={sortColomn}
+                onSort={this.handleSort}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+              />
+              <Pagination
+                count={totlaleCount}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,43 +1,185 @@
 .main-header {
-  background-image: url("/public/imgs/header.jpg");
+  background-image: url("/public/imgs/movies-site-header.jpg");
+  background-size: cover;
+  background-position: center center;
 }
 
-.bg {
-  background-color: rgba(102, 16, 242, 0.8);
-  backdrop-filter: blur(4px);
+.h-article {
+  padding: 90px 0px 90px 0px !important;
+
+  h1 {
+    color: #271273;
+  }
+  p {
+    padding: 30px 0px 30px 0px !important;
+    font-size: 18px;
+    max-width: 620px;
+  }
+}
+
+.movies {
+  background-image: url("/public/imgs/show.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.moviesShow {
+  text-align: center;
+  padding: 100px 80px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.deitails {
+  background-size: cover;
+  background-position: center center;
   padding: 50px 30px;
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.deitails-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  background-blend-mode: color-dodge;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
 }
 
 .logo:hover {
   color: #6610f2 !important;
 }
 
-.header {
-  background-color: rgb(255, 255, 255);
-  background-blend-mode: color-dodge;
-  border-top-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+.link {
+  text-decoration: none;
+  color: #271273;
 }
 
-.h-article {
-  h1 {
-    padding: 80px 40px 40px 40px !important;
-    max-width: 700px;
+.primary-bg {
+  background-color: #271273 !important;
+  color: #fff !important;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  border: 1px solid #271273 !important;
+  padding: 7px 17px !important;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #271273 !important;
+}
+
+.bg-active {
+  background-color: #271273 !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #403177 !important;
+}
+
+.btn-outline-primary {
+  color: #271273 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  color: #fff !important;
+  background-color: #403177 !important;
+}
+
+.active {
+  background-color: #271273 !important;
+}
+
+.nav-link {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+.table {
+  background-color: #fff !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.animation-from-top {
+  animation: move-down 0.6s forwards;
+}
+.animation-from-bottom {
+  animation: move-up 0.6s forwards;
+}
+
+@keyframes move-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  p {
-    padding: 0px 30px 40px 30px !important;
-    max-width: 1000px;
-  }
-
-  .s-box {
-    padding: 20px 20px 80px 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
 
-.color-primary {
-  color: #6610f2;
+@keyframes move-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
-.bg-color-primary {
-  background-color: #6610f2;
-}
+///////////// the old css
+
+// .main-header {
+//   // background-image: url("/public/imgs/header.jpg");
+// }
+
+// .bg {
+//   background-color: rgba(102, 16, 242, 0.8);
+//   backdrop-filter: blur(4px);
+//   padding: 50px 30px;
+// }
+
+// .logo:hover {
+//   color: #6610f2 !important;
+// }
+
+// .header {
+//   background-color: rgb(255, 255, 255);
+//   background-blend-mode: color-dodge;
+//   border-top-left-radius: 40px;
+//   border-bottom-right-radius: 40px;
+// }
+
+// .h-article {
+//   h1 {
+//     padding: 80px 40px 40px 40px !important;
+//     max-width: 700px;
+//   }
+//   p {
+//     padding: 0px 30px 40px 30px !important;
+//     max-width: 1000px;
+//   }
+
+//   .s-box {
+//     padding: 20px 20px 80px 20px;
+//   }
+// }
+
+// .color-primary {
+//   color: #6610f2;
+// }
+
+// .bg-color-primary {
+//   background-color: #6610f2;
+// }

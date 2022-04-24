@@ -27,14 +27,16 @@ class TableHeader extends Component {
   render() {
     return (
       <thead>
-        <tr>
+        <tr className="primary-bg">
           {this.props.colomns.map((colomn) => (
             <th
               key={colomn.path || colomn.key}
               onClick={() => this.raiseSort(colomn.path)}
               className="clickable"
             >
-              {colomn.label} {this.renderSortIcon(colomn)}
+              <h6 className="m-2">
+                {colomn.label} {this.renderSortIcon(colomn)}
+              </h6>
             </th>
           ))}
         </tr>

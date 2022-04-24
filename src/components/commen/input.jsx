@@ -1,26 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Input extends Component {
-  render() {
-    const { name, label, value, error, onChange } = this.props;
-
-    return (
-      <div className="form-group mt-3">
-        <label htmlFor={name} className="form-label">
-          {label}
-        </label>
-        <input
-          name={name}
-          value={value}
-          error={error}
-          id={name}
-          onChange={onChange}
-          className="form-control"
-        />
-        {error && <div className="alert alert-danger">{error}</div>}
-      </div>
-    );
-  }
-}
+const Input = ({ name, label, error, ...rest }) => {
+  return (
+    <div className="form-group mt-3">
+      <label htmlFor={name} className="form-label">
+        {label}
+      </label>
+      <input
+        {...rest}
+        name={name}
+        error={error}
+        id={name}
+        className={error ? "form-select is-invalid" : "form-select"}
+      />
+      {error && <div className="invalid-feedback">{error}</div>}
+    </div>
+  );
+};
 
 export default Input;

@@ -36,16 +36,16 @@ class AddMovie extends Form {
 
   getMovieData = (movie) => {
     return {
-      id: movie.id,
+      _id: movie._id,
       title: movie.title,
-      genreId: movie.genre.id,
+      genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
       dailyRentalRate: movie.dailyRentalRate,
     };
   };
 
   schema = {
-    id: Joi.string(),
+    _id: Joi.string(),
     title: Joi.string().required().label("Title"),
     genreId: Joi.string().required().label("Genre"),
     dailyRentalRate: Joi.number()
@@ -58,13 +58,15 @@ class AddMovie extends Form {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.renderInput("title", "Title")}
-        {this.renderSelect("genreId", "Genre")}
-        {this.renderInput("numberInStock", "Number In Stock")}
-        {this.renderInput("dailyRentalRate", "Rate")}
-        {this.renderBtn("Submite")}
-      </form>
+      <div className="container py-5">
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("title", "Title")}
+          {this.renderSelect("genreId", "Genre")}
+          {this.renderInput("numberInStock", "Number In Stock")}
+          {this.renderInput("dailyRentalRate", "Rate")}
+          {this.renderBtn("Submite")}
+        </form>
+      </div>
     );
   }
 }
